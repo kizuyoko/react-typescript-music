@@ -1,4 +1,4 @@
-# Live Demo [Here] (https://react-typescript-music.vercel.app/)
+# Live Demo [Here](https://react-typescript-music.vercel.app/)
 
 # React + TypeScript + Vite
 
