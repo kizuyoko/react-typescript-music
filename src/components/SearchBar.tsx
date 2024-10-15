@@ -10,7 +10,7 @@ function SearchBar() {
 
   return (
     <form 
-      className="flex items-center p-4" 
+      className="flex items-center p-6" 
       onSubmit={onSubmitHandler}
     >
       <input 
@@ -18,10 +18,10 @@ function SearchBar() {
         name="searchText"
         value={searchText}
         type="text" 
-        className="border border-slate-400 rounded p-1"
+        className="border border-slate-400 rounded p-1 lg:w-[460px]"
       />
-      <button className="bg-blue-500 text-white rounded px-2 py-1 hover:bg-blue-600 ml-2">
-        Search
+      <button className=" bg-cyan-500 hover:bg-cyan-400 text-white rounded px-4 py-1 font-medium ml-2">
+        Search 🔎
       </button>
     </form>
   )

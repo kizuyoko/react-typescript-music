@@ -1,11 +1,12 @@
+import { Music } from "../util/MusicType"
 import Tracklist from "./Tracklist"
 
-function SearchResults() {
+function SearchResults(props: { searchResults: Music[] }) {
 
   return (
     <>
-      <h1>SearchResults</h1>
-      <Tracklist />
+      <h2 className="text-2xl pb-2 font-semibold text-gray-700">Search Result 📃</h2>
+      <Tracklist list={props.searchResults} />
     </>
   )
 }

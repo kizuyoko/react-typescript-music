@@ -3,9 +3,9 @@ import SearchBar from "./SearchBar";
 function Header() {
 
   return (
-    <header className="bg-gray-200">
-      <div className="container mx-auto flex flex-col md:flex-row items-center md:justify-between"> 
-        <h1 className="p-4 text-xl">React 🎵 TypeScript 🎵 Music</h1>
+    <header className="border-b border-slate-300 shadow-md  animate-fade-down">
+      <div className="container mx-auto flex flex-col md:flex-row items-center md:justify-between "> 
+        <h1 className="p-6 pb-0 md:pb-6 text-lg font-bold">React 🎵 TypeScript 🎵 Music</h1>
         <SearchBar /> 
       </div>
     </header>

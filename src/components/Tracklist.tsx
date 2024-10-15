@@ -1,16 +1,20 @@
 import Track from "./Track";
+import { Music } from "../util/MusicType";
 
-function Tracklist() {
+function Tracklist(props: { list: Music[] }) {
 
   return (
-    <>
-      <h2>Tracklist</h2>
-      <ul>
-        <li>T1: <Track isRemoval={true} /></li>
-        <li>T2: <Track isRemoval={true} /></li>
-        <li>T3: <Track isRemoval={true} /></li>
-      </ul>
-    </>
+    ( 
+      props.list.map((track) => {
+        return ( 
+          <Track 
+            track={track} 
+            key={track.id}
+            isRemoval={false} 
+          />
+        );
+      })
+    ) 
   )
 }
 
