@@ -24,7 +24,7 @@ function Playlist(props: {playlist: Music[]}) {
       </div>
       <Tracklist list={props.playlist} />
 
-      <button className="text-white rounded p-2 bg-cyan-500 hover:bg-cyan-400 mt-2 w-full text-lg font-medium">
+      <button className="text-white round-half-small p-2 bg-violet-500 hover:opacity-80 mt-2 w-full text-lg font-medium">
         Save the Music 💾
       </button>
     </form>

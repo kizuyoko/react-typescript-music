@@ -18,9 +18,10 @@ function SearchBar() {
         name="searchText"
         value={searchText}
         type="text" 
-        className="border border-slate-400 rounded p-1 lg:w-[460px]"
+        className="border border-slate-400 round-half-small p-1 lg:w-[460px]"
       />
-      <button className=" bg-cyan-500 hover:bg-cyan-400 text-white rounded px-4 py-1 font-medium ml-2">
+      <button className=" bg-violet-500 hover:opacity-80 text-white round-half-small
+     px-4 py-1 font-medium ml-2">
         Search 🔎
       </button>
     </form>

@@ -9,10 +9,10 @@ function App() {
     <>
       <Header />
       <main className="container mx-auto flex flex-col md:flex-row md:p-0 justify-between">
-        <section className="flex-1 md:w-1/2 p-6 m-4 md:m-2 md:mt-4 md:ml-0 rounded-tl-[24px] rounded-br-[24px] border border-slate-300 shadow-lg  animate-fade-right">
+        <section className="round-half-big md:ml-0  animate-fade-right">
           <SearchResults searchResults={DUMMYDATA} />
         </section>
-        <section className="flex-1 md:w-1/2 p-6 m-4 mt-0 md:m-2 md:mt-4 md:mr-0 rounded-tl-[24px] rounded-br-[24px] border border-slate-300 shadow-lg  animate-fade-left">
+        <section className="round-half-big md:mr-0 animate-fade-left">
           <Playlist playlist={DUMMYDATA} />
         </section>
       </main>
