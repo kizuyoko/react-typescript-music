@@ -5,14 +5,14 @@
 @layer base {
   body {
     font-family: "Montserrat", sans-serif;
-    @apply bg-gradient-to-r from-violet-100 to-blue-100;
+    @apply bg-gradient-to-r from-cyan-50 to-violet-100 pb-6;
   }
 }
 
 .round-half-big {
-  @apply bg-white md:w-1/2 p-6 m-4 md:m-2 md:mt-4 rounded-tl-[24px] rounded-br-[24px] border border-slate-300 shadow-lg;
+  @apply bg-white md:w-1/2 m-4 md:m-2 md:mt-4 rounded-tl-[24px] rounded-br-[24px] border border-slate-300 shadow-lg;
 }
 
 .round-half-small {
-  @apply rounded-tl-[12px] rounded-br-[12px];
+  @apply rounded-br-[12px];
 }

@@ -8,9 +8,13 @@ function SearchBar() {
     setSearchText(event.currentTarget.value);
   }
 
+  function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchText(event.currentTarget.value);
+  }
+
   return (
     <form 
-      className="flex items-center p-6" 
+      className="flex items-center px-6 py-4" 
       onSubmit={onSubmitHandler}
     >
       <input 
@@ -18,11 +22,11 @@ function SearchBar() {
         name="searchText"
         value={searchText}
         type="text" 
-        className="border border-slate-400 round-half-small p-1 lg:w-[460px]"
+        className="border border-slate-400 rounded-tl-[12px] p-2 px-4 lg:w-[500px] focus:outline-none focus:border-slate-600 h-11"
+        onChange={onChangeHandler}
       />
-      <button className=" bg-violet-500 hover:opacity-80 text-white round-half-small
-     px-4 py-1 font-medium ml-2">
-        Search 🔎
+      <button className=" bg-violet-500 hover:opacity-80 text-white rounded-br-[12px] px-2 py-1 font-medium h-11">
+        <span className="hidden md:inline text-lg">Search</span> 🔎
       </button>
     </form>
   )

@@ -13,17 +13,18 @@ const Track: React.FC<TrackProps> = ({ track, isRemoval }) => {
 
   function renderAction(props: ActionProps) {
     return (
-      <button className="bg-cyan-500 text-white rounded px-2 py-1 hover:opacity-80 ml-2 font-medium">
-        {props.isRemoval ? "Remove" : "Add"}
+      <button className="bg-cyan-500 text-white font-bold text-4xl rounded px-2 py-0 hover:opacity-80 ml-2">
+        {props.isRemoval ? "-" : "+"}
       </button>
     )
   }
 
   return (
-    <article className="border border-r-0 border-b-0 border-l-0 border-slate-300 py-2 mt-1 flex items-center ">
+    <article className="flex items-center py-4">
       <div className='grow'>
         <h3 className='text-lg text-violet-700 font-bold'>{track.name}</h3> 
-        <p>{track.artist}</p>
+        <p>Artist: {track.artist}</p>
+        <p>Album: {track.album}</p>
       </div>
       <div>
         {renderAction({ isRemoval })}
