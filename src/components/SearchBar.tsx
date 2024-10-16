@@ -21,12 +21,13 @@ function SearchBar() {
         id="searchText"
         name="searchText"
         value={searchText}
-        type="text" 
-        className="border border-slate-400 rounded-tl-[12px] p-2 px-4 lg:w-[500px] focus:outline-none focus:border-slate-600 h-11"
+        type="text"
+        aria-label="Search a Song"
+        className="border border-slate-400 rounded-tl-[12px] p-2 px-4 lg:w-[500px] focus:outline-none focus:border-slate-600 h-11 max-[360px]:w-[200px] "
         onChange={onChangeHandler}
       />
-      <button className=" bg-violet-500 hover:opacity-80 text-white rounded-br-[12px] px-2 py-1 font-medium h-11">
-        <span className="hidden md:inline text-lg">Search</span> 🔎
+      <button className=" bg-violet-600 hover:opacity-80 text-white rounded-br-[12px] px-2 py-1 font-medium h-11">
+        Search <span className="hidden md:inline text-lg">🔎</span>
       </button>
     </form>
   )
