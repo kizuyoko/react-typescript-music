@@ -3,7 +3,7 @@ import { useState } from "react";
 function SearchBar() {
   const [searchText, setSearchText] = useState("");
 
-  function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
+  function onSearchHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSearchText(event.currentTarget.value);
   }
@@ -15,7 +15,7 @@ function SearchBar() {
   return (
     <form 
       className="flex items-center px-6 py-4" 
-      onSubmit={onSubmitHandler}
+      onSubmit={onSearchHandler}
     >
       <input 
         id="searchText"
