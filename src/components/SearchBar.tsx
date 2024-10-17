@@ -2,12 +2,18 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../icons';
 
-function SearchBar() {
+export interface SearchBarProps {
+  onSearch: (searchText: string) => void;
+}
+
+
+function SearchBar(props: SearchBarProps) {
   const [searchText, setSearchText] = useState("");
 
   function onSearchHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSearchText(event.currentTarget.value);
+    props.onSearch(searchText);
   }
 
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,7 +22,7 @@ function SearchBar() {
 
   return (
     <form 
-      className="flex items-center md:px-6 p-4" 
+      className="flex items-center md:px-0 p-4" 
       onSubmit={onSearchHandler}
     >
       <input 
