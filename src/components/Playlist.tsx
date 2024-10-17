@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Tracklist from "./Tracklist";
 import { Music } from "../util/MusicType";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../icons';
 
 function Playlist(props: {playlist: Music[]}) {
   const [playlistText, setPlaylistText] = useState("");
@@ -17,7 +19,7 @@ function Playlist(props: {playlist: Music[]}) {
   return (
     <form onSubmit={playlistSubmitHandler}>
       <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px]">
-        <h2 className="grow text-white text-2xl font-semibold">Playlist 🎶</h2>
+        <h2 className="grow text-white text-2xl font-semibold"><FontAwesomeIcon icon="play" className="mr-2" />Playlist</h2>
         <input 
           id="playlist"
           name="playlist"
@@ -30,7 +32,7 @@ function Playlist(props: {playlist: Music[]}) {
       </div>
       <Tracklist list={props.playlist} />
 
-      <button className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]">Save the Song 💾</button>
+      <button className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]">Save the Song <FontAwesomeIcon icon="floppy-disk" className="ml-2" /></button>
     </form>
   )
 }

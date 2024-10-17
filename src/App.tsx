@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
@@ -16,6 +17,7 @@ function App() {
           <Playlist playlist={DUMMYDATA} />
         </section>
       </main>
+      <Footer />
     </>
   )
 }
