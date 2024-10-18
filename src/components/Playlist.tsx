@@ -4,7 +4,7 @@ import { Music } from "../util/MusicType";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../icons';
 
-function Playlist(props: {playlist: Music[]}) {
+function Playlist(props: {playlist: Music[], onAdd: ()=>void}) {
   const [playlistText, setPlaylistText] = useState("");
 
   function playlistSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
@@ -30,8 +30,11 @@ function Playlist(props: {playlist: Music[]}) {
           onChange={onChangeHandler}
         />
       </div>
-      <Tracklist list={props.playlist} />
-
+      <Tracklist 
+        list={props.playlist} 
+        isRemoval={true}
+        onAdd={props.onAdd}
+      />
       <button className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]">Save the Song <FontAwesomeIcon icon="floppy-disk" className="ml-2" /></button>
     </form>
   )

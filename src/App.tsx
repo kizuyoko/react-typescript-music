@@ -9,6 +9,23 @@ import { Music } from "./util/MusicType";
 function App() {
   const [searchResult, setSearchResult] = useState<Music[]>([]);
 
+  const [playlistSongs, setPlaylistSongs] = useState<Music[]>(DUMMYDATA);
+
+  function addTrack(track: Music) {
+    const songExist = playlistSongs.find(item => item.id === track.id);
+    const newList = playlistSongs.concat(track);
+    if (songExist) {
+      console.log('There is already, nothing to do');
+      return;
+    } else {
+      setPlaylistSongs(newList);
+    }
+  }
+
+  function addTrackP() {
+    console.log('I am addTruckP')
+  }
+
   function searchListHandler(searchText: string) {
     const searchWord = searchText.toLowerCase();
     const newResult = DUMMYDATA.filter((song) => 
@@ -19,15 +36,24 @@ function App() {
     setSearchResult(newResult);
   }
 
+ 
+
   return (
     <>
       <Header onSearch={searchListHandler} />
       <main className="container mx-auto flex flex-col md:flex-row md:p-0 justify-between">
         <section className="round-half-big md:ml-0  animate-fade-right">
-          <SearchResults searchResults={searchResult} />
+          <SearchResults 
+            searchResults={searchResult} 
+            onAdd={addTrack}
+          />
         </section>
         <section className="round-half-big md:mr-0 animate-fade-left">
-          <Playlist playlist={DUMMYDATA} />
+          <Playlist 
+            playlist={playlistSongs} 
+
+            onAdd={addTrackP}
+          />
         </section>
       </main>
       <Footer />
