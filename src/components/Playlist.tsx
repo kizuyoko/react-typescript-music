@@ -4,7 +4,7 @@ import { Music } from "../util/MusicType";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../icons';
 
-function Playlist(props: {playlist: Music[], onAdd: ()=>void}) {
+function Playlist(props: {playlist: Music[], onAdd: ()=>void, playlistName: string}) {
   const [playlistText, setPlaylistText] = useState("");
 
   function playlistSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
@@ -19,7 +19,7 @@ function Playlist(props: {playlist: Music[], onAdd: ()=>void}) {
   return (
     <form onSubmit={playlistSubmitHandler}>
       <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px]">
-        <h2 className="grow text-white text-2xl font-semibold"><FontAwesomeIcon icon="play" className="mr-2" />Playlist</h2>
+        <h2 className="grow text-white text-2xl font-semibold"><FontAwesomeIcon icon="play" className="mr-2" />{props.playlistName}</h2>
         <input 
           id="playlist"
           name="playlist"

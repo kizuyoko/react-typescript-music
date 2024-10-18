@@ -8,7 +8,7 @@ import { Music } from "./util/MusicType";
 
 function App() {
   const [searchResult, setSearchResult] = useState<Music[]>([]);
-
+  const [playlistName, setPlaylistName] = useState("Playlist Name will come here.");
   const [playlistSongs, setPlaylistSongs] = useState<Music[]>(DUMMYDATA);
 
   function addTrack(track: Music) {
@@ -19,6 +19,7 @@ function App() {
       return;
     } else {
       setPlaylistSongs(newList);
+      setPlaylistName("Your Playlist: ")
     }
   }
 
@@ -51,7 +52,7 @@ function App() {
         <section className="round-half-big md:mr-0 animate-fade-left">
           <Playlist 
             playlist={playlistSongs} 
-
+            playlistName={playlistName}
             onAdd={addTrackP}
           />
         </section>
