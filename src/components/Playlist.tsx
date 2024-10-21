@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Tracklist from "./Tracklist";
 import { Music } from "../util/MusicType";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,11 +8,21 @@ interface PlaylistProps {
   playlistName: string;
   onRemove: (track: Music) => void;
   onRename: (playlistText: string) => void;
+  onAddPlaylist: () => void;
 }
 
 function Playlist(props: PlaylistProps) {
+  const [playlistTitle, setPlaylistTitle] = useState('');
+ 
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    props.onRename(event.currentTarget.value);
+    const newTitle = event.currentTarget.value
+    setPlaylistTitle(newTitle);
+    props.onRename(newTitle);
+  }
+
+  function onAddPlaylistHandler(event: React.FormEvent){
+    event.preventDefault()
+    props.onAddPlaylist();
   }
 
   return (
@@ -27,7 +38,7 @@ function Playlist(props: PlaylistProps) {
       </div>
       
       {
-        props.playlist.length >= 1 ? (<>
+        props.playlist.length >= 1 ? (
           <div className="grow">
             <Tracklist 
               list={props.playlist} 
@@ -35,13 +46,19 @@ function Playlist(props: PlaylistProps) {
               onRemove={props.onRemove}
             />
           </div>
-          <button className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]">
+        ) : <h3 className="p-6">No track in the Playlist.</h3>
+      }
+      {
+        props.playlist.length >= 1 && playlistTitle ? (
+          <button 
+            onClick={onAddPlaylistHandler}
+            className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]"
+          >
             Save the Song 
             <FontAwesomeIcon icon="floppy-disk" className="ml-2" />
           </button>
-        </>) : <h3 className="p-6">No track in the Playlist.</h3>
-          
-      }
+        ) : null
+      } 
     </form>
   )
 }

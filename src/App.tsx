@@ -43,6 +43,11 @@ function App() {
     setPlaylistName(playlistText)
   }
 
+  function saveListHandler() {
+    console.log(playlistName);
+    console.log(playlistSongs)
+  }
+ 
   return (
     <>
       <Header onSearch={searchListHandler} />
@@ -59,6 +64,7 @@ function App() {
             playlistName={playlistName}
             onRemove={removeTrack}
             onRename={renamePlaylistHandler}
+            onAddPlaylist={saveListHandler}
           />
         </section>
       </main>
