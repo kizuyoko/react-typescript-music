@@ -8,14 +8,14 @@ import { Music } from "./util/MusicType";
 
 function App() {
   const [searchResult, setSearchResult] = useState<Music[]>([]);
-  const [playlistName, setPlaylistName] = useState("Playlist Name will come here.");
-  const [playlistSongs, setPlaylistSongs] = useState<Music[]>(DUMMYDATA);
+  const [playlistName, setPlaylistName] = useState("New Playlist");
+  const [playlistSongs, setPlaylistSongs] = useState<Music[]>([]);
 
   function addTrack(track: Music) {
     const songExist = playlistSongs.find(item => item.id === track.id);
     const newList = playlistSongs.concat(track);
     if (songExist) {
-      console.log('There is already, nothing to do');
+      // console.log('There is already, nothing to do');
       return;
     } else {
       setPlaylistSongs(newList);
@@ -23,8 +23,10 @@ function App() {
     }
   }
 
-  function addTrackP() {
-    console.log('I am addTruckP')
+  function removeTrack(track: Music) {
+    setPlaylistSongs((prevTracks) =>
+      prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+    );
   }
 
   function searchListHandler(searchText: string) {
@@ -37,7 +39,9 @@ function App() {
     setSearchResult(newResult);
   }
 
- 
+  function renamePlaylistHandler(playlistText: string) {
+    setPlaylistName(playlistText)
+  }
 
   return (
     <>
@@ -53,7 +57,8 @@ function App() {
           <Playlist 
             playlist={playlistSongs} 
             playlistName={playlistName}
-            onAdd={addTrackP}
+            onRemove={removeTrack}
+            onRename={renamePlaylistHandler}
           />
         </section>
       </main>

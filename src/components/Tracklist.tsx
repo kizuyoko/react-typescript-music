@@ -1,7 +1,15 @@
 import Track from "./Track";
 import { Music } from "../util/MusicType";
 
-function Tracklist(props: { list: Music[], isRemoval: boolean, onAdd: (track: Music) => void }) {
+
+interface TracklistProps {
+  list: Music[], 
+  isRemoval: boolean, 
+  onAdd?: (track: Music) => void, 
+  onRemove?: (track: Music)  => void
+}
+
+function Tracklist(props: TracklistProps) {
 
   return (
     <div className="divide-y px-6">
@@ -12,6 +20,7 @@ function Tracklist(props: { list: Music[], isRemoval: boolean, onAdd: (track: Mu
               key={track.id}
               isRemoval={props.isRemoval}
               onAdd={props.onAdd}
+              onRemove={props.onRemove}
             />
           )
         )
