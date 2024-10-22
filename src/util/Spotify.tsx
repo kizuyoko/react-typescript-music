@@ -18,6 +18,7 @@ interface SpotifyTrack {
 const Spotify = {
   async getAccessToken() {
     if (accessToken) {
+      console.log('Using existing access token:', accessToken);
       return accessToken;
     } 
     
@@ -26,6 +27,7 @@ const Spotify = {
 
     if (accessTokenMatch && expiresInMatch) {
       accessToken = accessTokenMatch[1];
+      console.log('New access token acquired:', accessToken); 
 
       const expiresIn = Number(expiresInMatch[1]);
 
@@ -102,6 +104,13 @@ const Spotify = {
       });
 
       const userJsonResponse: { id: string } = await userResponse.json();
+      console.log('User Response:', userJsonResponse);
+
+      if (!userJsonResponse || !userJsonResponse.id) {
+          console.error('Failed to get user ID:', userJsonResponse);
+          return;
+      }
+
       userId = userJsonResponse.id;
 
       const createPlaylistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
