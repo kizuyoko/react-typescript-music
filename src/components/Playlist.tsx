@@ -23,23 +23,26 @@ function Playlist(props: PlaylistProps) {
   function onAddPlaylistHandler(event: React.FormEvent){
     event.preventDefault()
     props.onAddPlaylist();
+    setPlaylistTitle('');
   }
 
   return (
     <form className="flex flex-col h-full">
-      <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px]">
-        <h2 className="grow text-white text-2xl font-semibold"><FontAwesomeIcon icon="play" className="mr-2" />{props.playlistName}</h2>
+      <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px] md:items-center">
+        <h2 className="grow text-white text-2xl font-semibold "><FontAwesomeIcon icon="play" className="mr-2" />{props.playlistName}</h2>
         <input 
           aria-label="Playlist"
           type="text"
-          className="rounded focus:outline-none border focus:border-slate-800 my-1 lg:my-0 text-lg py-1 px-4"
+          className="grow rounded focus:outline-none border focus:border-slate-800 my-1 lg:my-0 text-lg py-1 px-4"
           onChange={onChangeHandler}
+          value={playlistTitle}
+          placeholder="Type the name of Playlist"
         />
       </div>
       
       {
         props.playlist.length >= 1 ? (
-          <div className="grow">
+          <div>
             <Tracklist 
               list={props.playlist} 
               isRemoval={true}
@@ -52,7 +55,7 @@ function Playlist(props: PlaylistProps) {
         props.playlist.length >= 1 && playlistTitle ? (
           <button 
             onClick={onAddPlaylistHandler}
-            className="text-white round-half-small p-2 bg-violet-600 hover:opacity-80 mt-2 w-full text-xl font-medium rounded-br-[24px]"
+            className="text-white p-2 bg-violet-600 hover:opacity-80 m-2 mx-6 text-xl font-medium rounded mb-6"
           >
             Save the Song 
             <FontAwesomeIcon icon="floppy-disk" className="ml-2" />

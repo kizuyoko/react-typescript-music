@@ -12,8 +12,9 @@ function App() {
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistSongs, setPlaylistSongs] = useState<Music[]>([]);
 
-  function search(term: string) {
-    Spotify.search(term).then(setSearchResult);
+  async function search(term: string) {
+    const result = await Spotify.search(term); 
+    setSearchResult(result);
   }
 
   function addTrack(track: Music) {
@@ -50,8 +51,14 @@ function App() {
   }
 
   function saveListHandler() {
-    console.log(playlistName);
-    console.log(playlistSongs)
+    //console.log(playlistName);
+    //console.log(playlistSongs)
+    Spotify.savePlaylist(playlistName, playlistSongs).then(
+      () => {
+        setPlaylistName("Next Playlist");
+        setPlaylistSongs([]);
+      }
+    );
   }
  
   return (
