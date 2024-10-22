@@ -16,7 +16,7 @@ interface SpotifyTrack {
 }
 
 const Spotify = {
-  getAccessToken() {
+  async getAccessToken() {
     if (accessToken) {
       return accessToken;
     } 
@@ -30,6 +30,7 @@ const Spotify = {
       const expiresIn = Number(expiresInMatch[1]);
 
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
+
       window.history.pushState('Access Token', '', '/'); 
       return accessToken;
     } else {
@@ -39,12 +40,12 @@ const Spotify = {
     }
   },
 
-  search: async (term: string | null) => {
-    const accessToken = Spotify.getAccessToken();
+  async search (term: string | null) {
+    const accessToken = await Spotify.getAccessToken();
     
     if (!accessToken) {
       console.error('Access token is not available.');
-      return []; // Return an empty array if access token is not available
+      return [];
     }
 
     try {
