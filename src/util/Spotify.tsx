@@ -3,7 +3,7 @@
 const clientId = "7347e9208bbc4413bdf6d3357a771f7d";
 
 //const redirectUri = 'http://localhost:5173/';
-const redirectUri = 'https://react-typescript-music.vercel.app/';
+const redirectUri = 'https://react-typescript-music.vercel.app/'; 
 
 let accessToken: string | undefined; 
 
