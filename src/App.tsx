@@ -14,16 +14,16 @@ function App() {
 
   async function search(term: string) {
     const result = await Spotify.search(term); 
-    setSearchResult(result);
+    const filteredResult = result.filter((track: Music) => track.name && track.artist);
+    setSearchResult(filteredResult);
   }
 
   function addTrack(track: Music) {
     const songExist = playlistSongs.find(item => item.id === track.id);
-    const newList = playlistSongs.concat(track);
     if (songExist) {
       return;
     } else {
-      setPlaylistSongs(newList);
+      setPlaylistSongs(prevSongs => [...prevSongs, track]);
       setPlaylistName("Your Playlist: ")
     }
   }
@@ -53,12 +53,20 @@ function App() {
   function saveListHandler() {
     //console.log(playlistName);
     //console.log(playlistSongs)
-    Spotify.savePlaylist(playlistName, playlistSongs).then(
-      () => {
+ 
+    const trackUris = playlistSongs.map(track => track.uri); 
+    
+    console.log('Track URIs:', trackUris);
+    
+    if (trackUris.length === 0) {
+      console.error('No tracks to save.');
+      return;
+    }
+
+    Spotify.savePlaylist(playlistName, trackUris).then(() => {
         setPlaylistName("Next Playlist");
-        setPlaylistSongs([]);
-      }
-    );
+        setPlaylistSongs([]); // Clear the playlist after saving
+    });
   }
  
   return (

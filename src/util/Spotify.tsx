@@ -1,4 +1,4 @@
-import { Music } from "./MusicType";
+//import { Music } from "./MusicType";
 
 const clientId = "7347e9208bbc4413bdf6d3357a771f7d";
 
@@ -32,6 +32,7 @@ const Spotify = {
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
 
       window.history.pushState('Access Token', '', '/'); 
+
       return accessToken;
     } else {
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
@@ -57,29 +58,35 @@ const Spotify = {
   
       const jsonResponse = await response.json();
   
-      if (!jsonResponse.tracks) {
-        console.log('Response Error!');
+      if (!jsonResponse.tracks || !jsonResponse.tracks.items) {
+        console.log('No tracks found in response.');
         return [];
       }
 
-      return jsonResponse.tracks.items.map((track: SpotifyTrack) => ({
-        id: track.id,
-        name: track.name,
-        artist: track.artists[0].name,
-        album: track.album.name,
-        uri: track.uri
-      }));
+      return jsonResponse.tracks.items.map((track: SpotifyTrack) => {
+        if (!track || !track.artists || !track.album) {
+          console.log('Incomplete track data:', track);
+          return { id: '', name: 'Unknown', artist: 'Unknown', album: 'Unknown', uri: '' };
+        }
+        return {
+          id: track.id || '',
+          name: track.name || 'Unknown',
+          artist: track.artists[0]?.name || 'Unknown',
+          album: track.album.name || 'Unknown',
+          uri: track.uri || '',
+        };
+      });
     } catch (error) {
       console.error('Error fetching data from Spotify API:', error);
       return [];
     };
   },
 
-  savePlaylist: async (name: string, trackUris: Music[]) => {
+  savePlaylist: async (name: string, trackUris: string[]) => {
     if (!name || !trackUris) {
       return;
     }
-    const accessToken = Spotify.getAccessToken();
+    const accessToken = await Spotify.getAccessToken();
     
     if (!accessToken) {
       console.error('Access token is not available.');

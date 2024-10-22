@@ -3,4 +3,5 @@ export type Music = {
   artist: string;
   album: string;
   id: string;
+  uri: string;
 };
