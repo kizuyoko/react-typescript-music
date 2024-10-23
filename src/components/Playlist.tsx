@@ -54,7 +54,7 @@ function Playlist(props: PlaylistProps) {
               onRemove={props.onRemove}
             />
           </div>
-        ) : <h3 className="p-6">No track in the Playlist.</h3>
+        ) : <p className="p-6">No track in the Playlist.</p>
       }
       {
         props.playlist.length >= 1 && playlistTitle ? (

@@ -20,7 +20,7 @@ function SearchResults(props: SearchResultsProps) {
             onAdd={props.onAdd}
             isRemoval={false}
           />
-        ) : <h3 className="p-6">{props.noTrackText}</h3>
+        ) : <p className="p-6">{props.noTrackText}</p>
       }
     </>
   )
