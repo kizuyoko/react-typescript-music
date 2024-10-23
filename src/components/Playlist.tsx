@@ -29,7 +29,7 @@ function Playlist(props: PlaylistProps) {
 
   return (
     <form className="flex flex-col h-full">
-      <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px] md:items-center">
+      <div className="flex flex-col lg:flex-row bg-sky-600  py-4 px-6 pb-3 rounded-tl-[24px] lg:items-center">
         <h2 className="text-2xl font-semibold text-white grow "><FontAwesomeIcon icon="play" className="mr-2" />{props.playlistName}</h2>
         <input 
           aria-label="Playlist"

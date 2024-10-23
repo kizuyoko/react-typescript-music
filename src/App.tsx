@@ -12,10 +12,12 @@ function App() {
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistSongs, setPlaylistSongs] = useState<Music[]>([]);
   const [loading, setLoading] = useState(false);
+  const [noTrackText, setNoTrackText] = useState('No track yet. Search a track in the search field.')
 
   async function search(term: string) {
     const result = await Spotify.search(term); 
     const filteredResult = result.filter((track: Music) => track.name && track.artist);
+    setNoTrackText('No track found.')
     setSearchResult(filteredResult);
   }
 
@@ -87,6 +89,7 @@ function App() {
           <SearchResults 
             searchResults={searchResult} 
             onAdd={addTrack}
+            noTrackText={noTrackText}
           />
         </section>
         <section className="round-half-big md:mr-0 animate-fade-left">
