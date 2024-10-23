@@ -11,6 +11,7 @@ function App() {
   const [searchResult, setSearchResult] = useState<Music[]>([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistSongs, setPlaylistSongs] = useState<Music[]>([]);
+  const [loading, setLoading] = useState(false);
 
   async function search(term: string) {
     const result = await Spotify.search(term); 
@@ -52,7 +53,7 @@ function App() {
     setPlaylistName(playlistText)
   }
 
-  function saveListHandler() {
+  async function saveListHandler() {
     //console.log(playlistName);
     //console.log(playlistSongs)
  
@@ -65,10 +66,17 @@ function App() {
       return;
     }
 
-    Spotify.savePlaylist(playlistName, trackUris).then(() => {
-        setPlaylistName("Next Playlist");
-        setPlaylistSongs([]); // Clear the playlist after saving
-    });
+    setLoading(true); // Set loading to true when saving starts
+
+    try {
+      await Spotify.savePlaylist(playlistName, trackUris);
+      setPlaylistName("Next Playlist");
+      setPlaylistSongs([]); // Clear the playlist after saving
+    } catch (error) {
+      console.error('Error saving playlist:', error);
+    } finally {
+      setLoading(false); // Set loading to false when saving ends
+    }
   }
  
   return (
@@ -88,7 +96,8 @@ function App() {
             onRemove={removeTrack}
             onRename={renamePlaylistHandler}
             onAddPlaylist={saveListHandler}
-          />
+            loading={loading}
+          />          
         </section>
       </main>
       <Footer />
