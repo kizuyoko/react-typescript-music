@@ -12,7 +12,6 @@ function SearchBar(props: SearchBarProps) {
 
   function onSearchHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSearchText(event.currentTarget.value);
     props.onSearch(searchText);
   }
 
@@ -22,7 +21,7 @@ function SearchBar(props: SearchBarProps) {
 
   return (
     <form 
-      className="flex items-center md:px-0 p-4" 
+      className="flex items-center p-4 md:px-0" 
       onSubmit={onSearchHandler}
     >
       <input 
@@ -35,7 +34,7 @@ function SearchBar(props: SearchBarProps) {
         onChange={onChangeHandler}
       />
       <button className=" bg-violet-600 hover:opacity-80 text-white rounded-br-[12px] px-2 py-1 font-medium h-11">
-        Search <span className="hidden md:inline text-lg"><FontAwesomeIcon icon="search" /></span>
+        Search <span className="hidden text-lg md:inline"><FontAwesomeIcon icon="search" /></span>
       </button>
     </form>
   )
