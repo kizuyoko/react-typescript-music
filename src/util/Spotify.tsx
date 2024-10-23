@@ -2,17 +2,27 @@
 
 const clientId = "7347e9208bbc4413bdf6d3357a771f7d";
 
-//const redirectUri = 'http://localhost:5173/';
-const redirectUri = 'https://react-typescript-music.vercel.app/'; 
+const redirectUri = 'http://localhost:5173/';
+//const redirectUri = 'https://react-typescript-music.vercel.app/'; 
 
 let accessToken: string | undefined; 
+
+interface SpotifyImage {
+  url: string;
+}
+
+interface SpotifyAlbum {
+  name: string;
+  images: SpotifyImage[]; // Added images array here
+}
 
 interface SpotifyTrack {
   id: string;
   name: string;
   artists: { name: string }[];
-  album: { name: string };
+  album: SpotifyAlbum
   uri: string;
+  image_url: string;
 }
 
 const Spotify = {
@@ -76,6 +86,7 @@ const Spotify = {
           artist: track.artists[0]?.name || 'Unknown',
           album: track.album.name || 'Unknown',
           uri: track.uri || '',
+          image_url: track.album.images[0]?.url || '',
         };
       });
     } catch (error) {

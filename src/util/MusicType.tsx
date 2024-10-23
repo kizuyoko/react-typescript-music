@@ -4,4 +4,5 @@ export type Music = {
   album: string;
   id: string;
   uri: string;
+  image_url: string;
 };

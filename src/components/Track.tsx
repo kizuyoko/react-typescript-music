@@ -27,6 +27,17 @@ function Track(props:TrackProps) {
 
   return (
     <article className="flex items-center py-4 animate-fade-up">
+      <div className='coco w-[64px] h-[64px] min-w-[64px] mr-4 flex items-center justify-center'>
+      {props.track.image_url ? (
+        <img 
+          src={props.track.image_url} 
+          alt={props.track.name} 
+          className={`w-full h-full object-cover rounded-md ${props.track.image_url ? 'aspect-square' : 'invisible'}`}  
+        />
+      ) : (
+        <span>No image</span>
+      )}
+      </div>
       <div className='grow'>
         <h3 className='text-lg font-bold text-violet-700'>{props.track.name}</h3> 
         <p>Artist: {props.track.artist}</p>
@@ -35,7 +46,7 @@ function Track(props:TrackProps) {
       <div>
         {renderAction(props)}
       </div>
-      </article>  
+    </article>  
   )
 }
 

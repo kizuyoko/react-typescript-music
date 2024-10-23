@@ -23,6 +23,8 @@ function App() {
     if (songExist) {
       return;
     } else {
+      const newList = searchResult.filter((item: Music) => item.id !== track.id);
+      setSearchResult(newList);
       setPlaylistSongs(prevSongs => [...prevSongs, track]);
       setPlaylistName("Your Playlist: ")
     }
@@ -72,8 +74,8 @@ function App() {
   return (
     <>
       <Header onSearch={search} />
-      <main className="container mx-auto flex flex-col md:flex-row md:p-0 justify-between">
-        <section className="round-half-big md:ml-0  animate-fade-right">
+      <main className="container flex flex-col justify-between mx-auto md:flex-row md:p-0">
+        <section className="round-half-big md:ml-0 animate-fade-right">
           <SearchResults 
             searchResults={searchResult} 
             onAdd={addTrack}
